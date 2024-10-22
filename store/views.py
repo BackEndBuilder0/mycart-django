@@ -1,9 +1,9 @@
-from shutil import ExecError
-from unicodedata import category
+from itertools import product
 
 from django.shortcuts import render, get_object_or_404
 from .models import *
-
+from carts.models import CartItem
+from carts.views import _cart_id
 
 # Create your views here.
 def store_page(request, category_slug=None, product_slug=None):
@@ -27,9 +27,11 @@ def store_page(request, category_slug=None, product_slug=None):
 def product_details(request, category_slug, product_slug):
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
     context = {
         'prod': single_product,
+        'in_cart': in_cart,
     }
     return render(request, 'store/product-detail.html', context)

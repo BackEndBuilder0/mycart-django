@@ -63,7 +63,6 @@ def cart_page(request, total_price=0, quantity=0, cart_items=None):
             quantity += cart_item.quantity
         tax = (18 * total_price) / 100
         grand_total = total_price+tax
-        length = len(cart_items)
     except ObjectDoesNotExist:
         pass
 
@@ -73,7 +72,6 @@ def cart_page(request, total_price=0, quantity=0, cart_items=None):
         'cart_items': cart_items,
         'tax': round(tax),
         'grand_total': round(grand_total),
-        'length': length,
     }
 
     return render(request, 'store/cart.html', context)
