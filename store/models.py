@@ -2,6 +2,7 @@ from audioop import reverse
 
 from django.db import models
 from category.models import Category
+from django.template.defaultfilters import default
 from django.urls import reverse
 
 
@@ -24,4 +25,18 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
+variation_categoty_choice = (
+    ('color', 'color'),
+    ('size', 'size'),
+)
+
+class Variation(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variation_category = models.CharField(max_length=100, choices=variation_categoty_choice)
+    variation_value = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    created_date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.product.product_name
 
