@@ -17,6 +17,9 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
 
+    color = models.CharField(max_length=50, blank=True, null=True)
+    size  = models.CharField(max_length=50, blank=True, null=True)
+
     class Meta:
         db_table = 'CartItem'
 

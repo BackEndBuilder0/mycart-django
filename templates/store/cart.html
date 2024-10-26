@@ -35,7 +35,14 @@
 			<div class="aside"><img src="{{ cart_item.product.product_img.url }}" class="img-sm"></div>
 			<figcaption class="info">
 				<a href="{{ cart_item.product.get_link }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
-				<p class="text-muted small">Matrix: 25 Mpx <br> Size: M</p>
+				<p class="text-muted small">
+					{% if cart_item.color %}
+                        Color: {{ cart_item.color|capfirst }}<br>
+                    {% endif %}
+                    {% if cart_item.size %}
+                        Size: {{ cart_item.size|capfirst }}
+                    {% endif %}
+				</p>
 			</figcaption>
 		</figure>
 	</td>
