@@ -7,7 +7,7 @@ urlpatterns = [
     path('register/', register_page, name='register_page'),
     path('logout/', logout, name='logout'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('', dashboard, name='dashboard'),
+    # path('', dashboard, name='dashboard'),
 
     path('activate/<uidb64>/<token>/', activate, name='activate'),
     path('forgotPassword/', forgotPassword, name='forgotPassword'),

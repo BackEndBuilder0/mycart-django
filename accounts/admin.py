@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import Accounts, UserProfile
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 

@@ -72,6 +72,7 @@ def payments(request):
         'order_number': order.order_number,
         'transID': payment.payment_id,
     }
+    print(data)
     return JsonResponse(data)
 
 def place_order(request, total=0, quantity=0,):
@@ -81,7 +82,7 @@ def place_order(request, total=0, quantity=0,):
     cart_items = CartItem.objects.filter(user=current_user)
     cart_count = cart_items.count()
     if cart_count <= 0:
-        return redirect('store')
+        return redirect('store_page')
 
     grand_total = 0
     tax = 0
@@ -158,4 +159,4 @@ def order_complete(request):
         }
         return render(request, 'orders/order_complete.html', context)
     except (Payment.DoesNotExist, Order.DoesNotExist):
-        return redirect('home')
+        return redirect('home_page')
