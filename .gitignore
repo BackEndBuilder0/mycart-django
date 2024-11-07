@@ -170,6 +170,14 @@ category/migrations/
 store/migrations/
 orders/migrations/
 
+# Allow __init__.py files in those folders
+!accounts/migrations/__init__.py
+!carts/migrations/__init__.py
+!category/migrations/__init__.py
+!store/migrations/__init__.py
+!orders/migrations/__init__.py
+
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

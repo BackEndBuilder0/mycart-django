@@ -8,6 +8,7 @@ import json
 from store.models import Product
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.conf import settings
 
 
 def payments(request):
@@ -129,6 +130,7 @@ def place_order(request, total=0, quantity=0,):
                 'total': total,
                 'tax': tax,
                 'grand_total': grand_total,
+                'client_id': settings.CLIENT_ID,
             }
             return render(request, 'orders/payments.html', context)
     else:

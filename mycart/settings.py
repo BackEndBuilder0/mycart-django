@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,11 +161,16 @@ MESSAGE_TAGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Load .env file
+load_dotenv()
+
 
 # SMTP configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # or your email service provider's SMTP server
-EMAIL_PORT = 587  # or 465 for SSL
+EMAIL_HOST = os.getenv('EMAIL_HOST') # or your email service provider's SMTP server
+EMAIL_PORT =  os.getenv('EMAIL_PORT') # or 465 for SSL
 EMAIL_USE_TLS = True  # or EMAIL_USE_SSL = True if using port 465
-EMAIL_HOST_USER = 'tpython719@gmail.com'  # your email address
-EMAIL_HOST_PASSWORD = 'trjovryyyyiqlzjo'  # your email password
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # your email address
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # your email password
+
+CLIENT_ID = os.getenv('CLIENT_ID')
